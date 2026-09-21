@@ -26,7 +26,7 @@ function LogoutButton() {
 
   return (
     <button
-      className="bg-red-700 mt-5 text-xl text-white px-2 pb-2 pt-1 rounded-md"
+      className="bg-red-700 mt-5 text-xl text-white px-2 pb-2 pt-1 rounded-md cursor-pointer"
       onClick={handleLogout}
     >
       {isLoading ? (
