@@ -66,6 +66,7 @@ function Form({ currentMaster, setCurrentMaster }) {
       const cleanedData = {
         ...partyData,
         bank_ac: partyData.bank_ac === '' ? null : partyData.bank_ac,
+        mobile: partyData.number === '' ? null : partyData.number,
       };
 
       let result;
@@ -131,38 +132,11 @@ function Form({ currentMaster, setCurrentMaster }) {
         />
 
         <div className="flex gap-10">
-          <Input
-            label="Mobile"
-            id="mobile"
-            type="number"
-            register={register}
-            rules={{
-              required: 'Required',
-            }}
-            error={errors.mobile?.message}
-          />
-          <Input
-            label="City"
-            id="city"
-            type="text"
-            register={register}
-            rules={{
-              required: 'Required',
-            }}
-            error={errors.city?.message}
-          />
+          <Input label="Mobile" id="mobile" type="number" register={register} />
+          <Input label="City" id="city" type="text" register={register} />
         </div>
 
-        <Input
-          label="Address"
-          id="address"
-          type="text"
-          register={register}
-          rules={{
-            required: 'Required',
-          }}
-          error={errors.address?.message}
-        />
+        <Input label="Address" id="address" type="text" register={register} />
 
         <div className="flex gap-10">
           <Input

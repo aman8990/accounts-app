@@ -2,6 +2,7 @@
 
 import { PDFViewer } from '@react-pdf/renderer';
 import MemoPDF from './MemoPDF';
+import PreInvoicePDF from './PreInvoicePDF';
 
 export default function MemoPreview({ memo }) {
   return (

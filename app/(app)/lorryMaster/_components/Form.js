@@ -64,6 +64,8 @@ function Form({ currentMaster, setCurrentMaster }) {
       const cleanedData = {
         ...lorryData,
         bank_ac: lorryData.bank_ac === '' ? null : lorryData.bank_ac,
+        owner_number:
+          lorryData.owner_number === '' ? null : lorryData.owner_number,
       };
 
       let result;
@@ -130,10 +132,6 @@ function Form({ currentMaster, setCurrentMaster }) {
             id="owner_mobile"
             type="number"
             register={register}
-            rules={{
-              required: 'Required',
-            }}
-            error={errors.owner_mobile?.message}
           />
         </div>
 
@@ -142,10 +140,6 @@ function Form({ currentMaster, setCurrentMaster }) {
           id="owner_address"
           type="text"
           register={register}
-          rules={{
-            required: 'Required',
-          }}
-          error={errors.owner_address?.message}
         />
 
         <div className="flex gap-10">

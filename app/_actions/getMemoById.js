@@ -43,6 +43,7 @@ export async function getMemoById(memoId, method) {
       initial_party_freight_charges,
       party_freight_charges,
       party_net_balance,
+      advance_to_pay,
       party_master(id,full_name,address,mobile),
       party_payments(id,amount,type)
     `,

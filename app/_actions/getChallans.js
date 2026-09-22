@@ -14,6 +14,7 @@ export async function getChallans() {
     party_weight,
     from,
     to,
+    lorry_no,
     party_master (full_name)
   `,
     )

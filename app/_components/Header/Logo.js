@@ -13,10 +13,10 @@ function Logo() {
         height={80}
         width={80}
         quality={100}
-        alt="Wild Haven Cabins Logo"
+        alt="Rahul Roadways"
       />
       <span className="text-2xl text-center font-semibold mt-1">
-        Vanshika Transways
+        Rahul Roadways
       </span>
     </Link>
   );

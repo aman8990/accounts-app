@@ -12,6 +12,7 @@ import SpinnerMini from '@/app/_components/SpinnerMini';
 import toast from 'react-hot-toast';
 import H1 from '@/app/_components/H1';
 import MemoPreview from './MemoPreview';
+import DownloadPreInvoice from './DownloadPreInvoice';
 
 function Form() {
   const [isSearching, setIsSearching] = useState(false);
@@ -30,6 +31,8 @@ function Form() {
   }
 
   const onSubmit = async (data) => {
+    if (!data?.id) return;
+
     setIsSearching(true);
 
     const result = await getMemoById(data.id, 3);
@@ -102,6 +105,10 @@ function Form() {
                   label="Initial Charges"
                   text={`₹ ${formatINR.format(memo?.initial_party_freight_charges)}`}
                 />
+                <H1
+                  label="Advance To Pay"
+                  text={`₹ ${formatINR.format(memo?.advance_to_pay || 0)}`}
+                />
               </div>
 
               <div className="flex gap-20">
@@ -162,6 +169,7 @@ function Form() {
         </div>
       )}
 
+      {memo && <DownloadPreInvoice memo={memo} />}
       {memo && <DownloadInvoice memo={memo} />}
       {/* {memo && <MemoPreview memo={memo} />} */}
     </>

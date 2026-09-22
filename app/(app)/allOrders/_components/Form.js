@@ -188,8 +188,6 @@ function Form({ orderToEdit, setOrderToEdit, onOrderUpdate }) {
             disabled={true}
           />
 
-          <Input label="LR No." id="lr_no" type="number" register={register} />
-
           <Input
             label="From"
             id="from"

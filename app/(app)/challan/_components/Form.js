@@ -91,7 +91,6 @@ function Form({ currentChallan, setCurrentChallan }) {
       lorry_id: Number(formData?.lorry_id),
       challan_date: formattedDate(formData?.challan_date),
       lorry_freight_charges: lorryFreightCharges,
-      lorry_no: formData?.lorry_no,
       driver_name: formData?.driver_name,
       driver_mobile: formData?.driver_mobile,
       lic_no: formData?.lic_no,
@@ -174,10 +173,7 @@ function Form({ currentChallan, setCurrentChallan }) {
               id="lorry_no"
               type="text"
               register={register}
-              rules={{
-                required: 'Required',
-              }}
-              error={errors.lorry_no?.message}
+              disabled={true}
             />
           </div>
 

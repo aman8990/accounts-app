@@ -100,7 +100,12 @@ function Form({ lastMemoId }) {
           </div>
 
           <div className="flex-1">
-            <Input label="LR No." id="lr_no" type="text" register={register} />
+            <Input
+              label="Lorry No."
+              id="lorry_no"
+              type="text"
+              register={register}
+            />
           </div>
 
           <div className="flex-1 mt-1">
@@ -230,6 +235,17 @@ function Form({ lastMemoId }) {
               required: 'Required',
             }}
             error={errors.initial_party_freight_charges?.message}
+          />
+
+          <Input
+            label="Advance To Pay"
+            id="advance_to_pay"
+            type="number"
+            register={register}
+            rules={{
+              required: 'Required',
+            }}
+            error={errors?.advance_to_pay?.message}
           />
         </div>
 
