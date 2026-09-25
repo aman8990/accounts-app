@@ -15,6 +15,8 @@ import { GiPayMoney } from 'react-icons/gi';
 import { BiListMinus } from 'react-icons/bi';
 import { MdOutlineAutoAwesomeMotion } from 'react-icons/md';
 import { MdOutlinePendingActions } from 'react-icons/md';
+import { GrMultiple } from 'react-icons/gr';
+import { VscMultipleWindows } from 'react-icons/vsc';
 
 function Sidebar({ toggleSidebar }) {
   const pathname = usePathname();
@@ -112,6 +114,20 @@ function Sidebar({ toggleSidebar }) {
           >
             <TbFileInvoice size={30} />
             <span className={`${spanClass}`}>Invoice</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href="/bulkInvoice"
+            className={`flex gap-3 px-3 py-1 ${
+              isActive('/bulkInvoice')
+                ? ' rounded-md bg-accent-50 text-primay-950'
+                : 'text-primary-100'
+            }`}
+          >
+            <VscMultipleWindows size={30} />
+            <span className={`${spanClass}`}>Bulk Invoice</span>
           </Link>
         </li>
 
