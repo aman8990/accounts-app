@@ -12,6 +12,7 @@ import DatePicker from '@/app/_components/DatePicker';
 import { useRouter } from 'next/navigation';
 import formattedDate from '@/app/_libs/formattedDate';
 import { useLorryMasterStore } from '@/app/_store/lorryMasterStore';
+import { formatINR } from '@/app/_libs/formatINR';
 
 function Form({ currentChallan, setCurrentChallan }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,18 +36,28 @@ function Form({ currentChallan, setCurrentChallan }) {
     },
   });
 
-  const [initialCharges, detention, others, tds, munsiana, commission] =
-    useWatch({
-      control,
-      name: [
-        'initial_lorry_freight_charges',
-        'lorry_detention',
-        'lorry_others',
-        'lorry_tds',
-        'lorry_munsiana',
-        'lorry_commission',
-      ],
-    });
+  const [
+    initialCharges,
+    detention,
+    others,
+    tds,
+    munsiana,
+    commission,
+    rate,
+    weight,
+  ] = useWatch({
+    control,
+    name: [
+      'initial_lorry_freight_charges',
+      'lorry_detention',
+      'lorry_others',
+      'lorry_tds',
+      'lorry_munsiana',
+      'lorry_commission',
+      'lorry_rate',
+      'lorry_weight',
+    ],
+  });
 
   const toNumber = (value) => Number(value) || 0;
 
@@ -57,6 +68,9 @@ function Form({ currentChallan, setCurrentChallan }) {
     toNumber(tds) -
     toNumber(munsiana) -
     toNumber(commission);
+
+  const calculatedRate = toNumber(initialCharges) / toNumber(weight);
+  const calculatedCharges = toNumber(weight) * toNumber(rate);
 
   const calculatedCommission = Number(
     (0.05 * toNumber(initialCharges)).toFixed(0),
@@ -322,6 +336,20 @@ function Form({ currentChallan, setCurrentChallan }) {
             }}
             error={errors.initial_lorry_freight_charges?.message}
           />
+        </div>
+
+        <div className="flex">
+          {calculatedRate > 0 && (
+            <h1 className="text-primary-100 font-semibold text-xl ml-165">
+              {formatINR(calculatedRate)}
+            </h1>
+          )}
+
+          {calculatedCharges > 0 && (
+            <h1 className="text-primary-100 font-semibold text-xl ml-240">
+              {formatINR(calculatedCharges)}
+            </h1>
+          )}
         </div>
 
         <div className="flex gap-10">

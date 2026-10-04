@@ -107,7 +107,9 @@ function InvoiceTop() {
         <Text style={styles.address2}> Aslali, Ahmedabad - 382427</Text>
       </View>
 
-      <Text style={styles.phone}>Phone: 9173837094 | 9727892094</Text>
+      <Text style={styles.phone}>
+        Phone: 9173837094 | 9727892094| 9925192094
+      </Text>
     </View>
   );
 }

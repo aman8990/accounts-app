@@ -12,6 +12,7 @@ import DatePicker from '@/app/_components/DatePicker';
 import { useRouter } from 'next/navigation';
 import formattedDate from '@/app/_libs/formattedDate';
 import { usePartyMasterStore } from '@/app/_store/partyMasterStore';
+import { formatINR } from '@/app/_libs/formatINR';
 
 function Form({ lastMemoId }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,17 +29,20 @@ function Form({ lastMemoId }) {
     formState: { errors },
   } = useForm();
 
-  const [initialCharges, detention, others, rto, tds, munsiana] = useWatch({
-    control,
-    name: [
-      'initial_party_freight_charges',
-      'party_detention',
-      'party_others',
-      'party_rto',
-      'party_tds',
-      'party_munsiana',
-    ],
-  });
+  const [initialCharges, detention, others, rto, tds, munsiana, weight, rate] =
+    useWatch({
+      control,
+      name: [
+        'initial_party_freight_charges',
+        'party_detention',
+        'party_others',
+        'party_rto',
+        'party_tds',
+        'party_munsiana',
+        'party_weight',
+        'party_rate',
+      ],
+    });
 
   const toNumber = (value) => Number(value) || 0;
 
@@ -49,6 +53,9 @@ function Form({ lastMemoId }) {
     toNumber(rto) -
     toNumber(tds) -
     toNumber(munsiana);
+
+  const calculatedRate = toNumber(initialCharges) / toNumber(weight);
+  const calculatedCharges = toNumber(weight) * toNumber(rate);
 
   const partyOptions = partyMasters.map((party) => ({
     value: party.id,
@@ -86,7 +93,7 @@ function Form({ lastMemoId }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center">
-      <div className="max-w-6xl border-4 border-primary-700 rounded-2xl p-4 space-y-4">
+      <div className="max-w-6xl border-4 border-primary-700 rounded-2xl p-4 space-y-1">
         <div className="flex gap-5">
           <div className="flex-1">
             <Input
@@ -205,7 +212,7 @@ function Form({ lastMemoId }) {
           <Input
             label="Weight"
             id="party_weight"
-            type="text"
+            type="number"
             register={register}
             rules={{
               required: 'Required',
@@ -247,6 +254,20 @@ function Form({ lastMemoId }) {
             }}
             error={errors?.advance_to_pay?.message}
           />
+        </div>
+
+        <div className="flex">
+          {calculatedRate > 0 && (
+            <h1 className="text-primary-100 font-semibold text-xl ml-30">
+              {formatINR(calculatedRate)}
+            </h1>
+          )}
+
+          {calculatedCharges > 0 && (
+            <h1 className="text-primary-100 font-semibold text-xl ml-90">
+              {formatINR(calculatedCharges)}
+            </h1>
+          )}
         </div>
 
         <div className="flex gap-10">

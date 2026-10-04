@@ -1,3 +1,5 @@
+import ButtonPreSmall from '../../invoice/_components/ButtonPreSmall';
+
 function Memos({ memos }) {
   function formatDate(date) {
     if (!date) return '-';
@@ -15,11 +17,12 @@ function Memos({ memos }) {
       <table className="w-full">
         <thead>
           <tr className="border-2 text-accent-500 border-accent-500">
-            <th className="p-3 text-left">ID</th>
-            <th className="p-3 text-left">Name</th>
-            <th className="p-3 text-left">Date</th>
-            <th className="p-3 text-left">From</th>
-            <th className="p-3 text-left">To</th>
+            <th className="p-3 text-center">ID</th>
+            <th className="p-3 text-center">Name</th>
+            <th className="p-3 text-center">Date</th>
+            <th className="p-3 text-center">From</th>
+            <th className="p-3 text-center">To</th>
+            <th className="p-3 text-center">Pre IN.</th>
           </tr>
         </thead>
 
@@ -29,13 +32,18 @@ function Memos({ memos }) {
               key={memo.id}
               className="border-b-2 border-r-2 border-l-2 border-primary-100 text-primary-100 font-semibold text-lg"
             >
-              <td className="p-3">{memo.id}</td>
-              <td className="p-3 max-w-30">
+              <td className="p- text-center">{memo.id}</td>
+              <td className="p- text-center max-w-30">
                 {memo.party_master.full_name ?? '-'}
               </td>
-              <td className="p-3">{formatDate(memo.memo_date) ?? '-'}</td>
-              <td className="p-3">{memo.from ?? '-'}</td>
-              <td className="p-3">{memo.to ?? '-'}</td>
+              <td className="p- text-center">
+                {formatDate(memo.memo_date) ?? '-'}
+              </td>
+              <td className="p- text-center">{memo.from ?? '-'}</td>
+              <td className="p- text-center">{memo.to ?? '-'}</td>
+              <td className="p-3 text-center">
+                <ButtonPreSmall memo={memo} />
+              </td>
             </tr>
           ))}
         </tbody>

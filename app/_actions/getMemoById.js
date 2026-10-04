@@ -86,6 +86,11 @@ export async function getMemos() {
     from,
     to,
     memo_date,
+    lorry_no,
+    party_weight,
+    party_rate,
+    party_freight_charges,
+    advance_to_pay,
     party_master (
       full_name
     )
