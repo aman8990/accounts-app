@@ -308,7 +308,7 @@ function Form({ currentChallan, setCurrentChallan }) {
           <Input
             label="Weight"
             id="lorry_weight"
-            type="text"
+            type="number"
             register={register}
             rules={{
               required: 'Required',

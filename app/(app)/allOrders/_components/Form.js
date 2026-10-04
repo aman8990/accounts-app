@@ -228,7 +228,7 @@ function Form({ orderToEdit, setOrderToEdit, onOrderUpdate }) {
           <Input
             label="Party Weight"
             id="party_weight"
-            type="text"
+            type="number"
             register={register}
             rules={{
               required: 'Required',
@@ -372,7 +372,7 @@ function Form({ orderToEdit, setOrderToEdit, onOrderUpdate }) {
           <Input
             label="Lorry Weight"
             id="lorry_weight"
-            type="text"
+            type="number"
             register={register}
             rules={{
               required: 'Required',
